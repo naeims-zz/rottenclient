@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3302B7E31A860BB8009360E1 /* Certified Fresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7DD1A860BB8009360E1 /* Certified Fresh.png */; };
+		3302B7E41A860BB8009360E1 /* Fresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7DE1A860BB8009360E1 /* Fresh.png */; };
+		3302B7E51A860BB8009360E1 /* Rotten.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7DF1A860BB8009360E1 /* Rotten.png */; };
+		3302B7E61A860BB8009360E1 /* Spilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7E01A860BB8009360E1 /* Spilled.png */; };
+		3302B7E71A860BB8009360E1 /* Upright.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7E11A860BB8009360E1 /* Upright.png */; };
+		3302B7E81A860BB8009360E1 /* WTS.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7E21A860BB8009360E1 /* WTS.png */; };
 		3379C0401A81F890000CDD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C03F1A81F890000CDD2F /* main.m */; };
 		3379C0431A81F890000CDD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C0421A81F890000CDD2F /* AppDelegate.m */; };
 		3379C04B1A81F890000CDD2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C04A1A81F890000CDD2F /* Images.xcassets */; };
@@ -32,6 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3302B7DD1A860BB8009360E1 /* Certified Fresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Certified Fresh.png"; path = "../../../../Desktop/rotten images/Certified Fresh.png"; sourceTree = "<group>"; };
+		3302B7DE1A860BB8009360E1 /* Fresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fresh.png; path = "../../../../Desktop/rotten images/Fresh.png"; sourceTree = "<group>"; };
+		3302B7DF1A860BB8009360E1 /* Rotten.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Rotten.png; path = "../../../../Desktop/rotten images/Rotten.png"; sourceTree = "<group>"; };
+		3302B7E01A860BB8009360E1 /* Spilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spilled.png; path = "../../../../Desktop/rotten images/Spilled.png"; sourceTree = "<group>"; };
+		3302B7E11A860BB8009360E1 /* Upright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Upright.png; path = "../../../../Desktop/rotten images/Upright.png"; sourceTree = "<group>"; };
+		3302B7E21A860BB8009360E1 /* WTS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WTS.png; path = "../../../../Desktop/rotten images/WTS.png"; sourceTree = "<group>"; };
 		3379C03A1A81F890000CDD2F /* rottenclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rottenclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C03E1A81F890000CDD2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C03F1A81F890000CDD2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -75,6 +87,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3302B7DC1A860B95009360E1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3302B7DD1A860BB8009360E1 /* Certified Fresh.png */,
+				3302B7DE1A860BB8009360E1 /* Fresh.png */,
+				3302B7DF1A860BB8009360E1 /* Rotten.png */,
+				3302B7E01A860BB8009360E1 /* Spilled.png */,
+				3302B7E11A860BB8009360E1 /* Upright.png */,
+				3302B7E21A860BB8009360E1 /* WTS.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		3379C0311A81F890000CDD2F = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +123,7 @@
 		3379C03C1A81F890000CDD2F /* rottenclient */ = {
 			isa = PBXGroup;
 			children = (
+				3302B7DC1A860B95009360E1 /* Images */,
 				3379C0691A82043E000CDD2F /* Views */,
 				3379C0681A8200EC000CDD2F /* View Controllers */,
 				3379C0411A81F890000CDD2F /* AppDelegate.h */,
@@ -258,8 +284,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3379C0731A8212AD000CDD2F /* MovieDetailViewController.xib in Resources */,
+				3302B7E51A860BB8009360E1 /* Rotten.png in Resources */,
 				3379C04E1A81F890000CDD2F /* LaunchScreen.xib in Resources */,
 				3379C0671A8200CF000CDD2F /* MoviesViewController.xib in Resources */,
+				3302B7E41A860BB8009360E1 /* Fresh.png in Resources */,
+				3302B7E31A860BB8009360E1 /* Certified Fresh.png in Resources */,
+				3302B7E61A860BB8009360E1 /* Spilled.png in Resources */,
+				3302B7E71A860BB8009360E1 /* Upright.png in Resources */,
+				3302B7E81A860BB8009360E1 /* WTS.png in Resources */,
 				3379C06E1A820456000CDD2F /* MovieCell.xib in Resources */,
 				3379C04B1A81F890000CDD2F /* Images.xcassets in Resources */,
 			);

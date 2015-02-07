@@ -8,6 +8,10 @@
 
 #import "MovieCell.h"
 
+@interface MovieCell()
+
+@end
+
 @implementation MovieCell
 
 - (void)awakeFromNib {
