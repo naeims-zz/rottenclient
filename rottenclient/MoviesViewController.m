@@ -10,12 +10,14 @@
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "MovieDetailViewController.h"
+#import "SVProgressHUD.h"
 
 @interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UILabel *networkError;
 
 -(void)makeMovieListRequest:(NSString*)endpointUrl completionHandler:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError))completionHandler ;
 @end
@@ -39,19 +41,29 @@ NSString* boxOfficeListEndpoint;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
     self.tableView.rowHeight = 80;
+    self.tableView.hidden = YES;
     
-    // make request to get data
+    // make request to get data, show HUD the first time
+    [SVProgressHUD show];
     [self onRefresh];
     
     // configure other things
     self.title = @"Box Office Movies";
+
+    // configure navigation bar
+    self.navigationController.navigationBar.translucent = NO;
     
     // refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     [self.refreshControl removeConstraints:self.refreshControl.constraints];
+    
+    // network error
+    self.networkError.frame = CGRectMake(0, 0, 375, 60);
+    self.networkError.hidden = YES;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -64,12 +76,28 @@ NSString* boxOfficeListEndpoint;
 }
 
 - (void)onRefresh {
+    self.networkError.hidden = YES;
+
     [self makeMovieListRequest:boxOfficeListEndpoint completionHandler:^void (NSURLResponse *response, NSData *data, NSError *connectionError) {
+        [self.refreshControl endRefreshing]; // good thing endRefreshing is idempotent
+        [SVProgressHUD dismiss];  // good thing dismiss is idempotent
+
+        if (data == nil || connectionError != nil) {
+            self.networkError.hidden = NO;
+            return;
+        }
+        
         // parse the response and reload data
         NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
         self.movies = responseDictionary[@"movies"];
+
+        if (self.movies == nil) {
+            self.networkError.hidden = NO;
+            return;
+        }
+
         [self.tableView reloadData];
-        [self.refreshControl endRefreshing];
+        self.tableView.hidden = NO;
     }];
 }
 

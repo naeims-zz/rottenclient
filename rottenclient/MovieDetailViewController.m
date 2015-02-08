@@ -132,8 +132,6 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGRect rect = [self.movie[@"synopsis"] boundingRectWithSize:CGSizeMake(359.0, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]} context:nil];
 
-    NSLog(@"%f", rect.size.height + 250);
-    
     return rect.size.height + 250;
 }
 
@@ -141,7 +139,6 @@
 
 - (void)parallaxView:(APParallaxView *)view willChangeFrame:(CGRect)frame {
     // Do whatever you need to do to the parallaxView or your subview before its frame changes
-    NSLog(@"parallaxView:didChangeFrame: %@", NSStringFromCGRect(frame));
 }
 
 - (void)parallaxView:(APParallaxView *)view didChangeFrame:(CGRect)frame {
