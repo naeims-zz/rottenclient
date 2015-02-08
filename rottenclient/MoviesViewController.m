@@ -13,7 +13,7 @@
 #import "SVProgressHUD.h"
 #import "UIImageView+NSAdditions.h"
 
-@interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UITabBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
@@ -21,6 +21,9 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UILabel *networkError;
 @property (nonatomic, strong) UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UITabBar *tabBar;
+@property (weak, nonatomic) IBOutlet UITabBarItem *boxOfficeTab;
+@property (weak, nonatomic) IBOutlet UITabBarItem *dvdsTab;
 
 
 -(void)makeMovieListRequest:(NSString*)endpointUrl completionHandler:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError))completionHandler ;
@@ -30,15 +33,17 @@
 
 NSString* apiKey = @"uv9vztvx4nqmbcde5qbtne9h";
 NSString* moviesListFormat = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/%@.json?country=us&apikey=%@";
-NSString* upcomingListEndpoint;
+NSString* dvdsListFormat = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/%@.json?country=us&apikey=%@";
 NSString* boxOfficeListEndpoint;
+NSString* topRentalsListEndpoint;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // configure endpoints
-    upcomingListEndpoint = [NSString stringWithFormat:moviesListFormat, @"upcoming", apiKey];
     boxOfficeListEndpoint = [NSString stringWithFormat:moviesListFormat, @"box_office", apiKey];
+    topRentalsListEndpoint = [NSString stringWithFormat:dvdsListFormat, @"top_rentals", apiKey];
+    
     
     // configure table view
     self.tableView.dataSource = self;
@@ -46,10 +51,6 @@ NSString* boxOfficeListEndpoint;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
     self.tableView.rowHeight = 80;
     self.tableView.hidden = YES;
-    
-    // make request to get data, show HUD the first time
-    [SVProgressHUD show];
-    [self onRefresh];
     
     // search bar
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 375, 40)];
@@ -68,6 +69,18 @@ NSString* boxOfficeListEndpoint;
     // network error
     self.networkError.frame = CGRectMake(0, 0, 375, 60);
     self.networkError.hidden = YES;
+    
+    // tab bar
+    self.tabBar.delegate = self;
+    self.tabBar.selectedItem = self.boxOfficeTab;
+
+    // progress hud customization
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.9]];
+    
+    // make request to get data, show HUD the first time
+    [SVProgressHUD show];
+    [self onRefresh];
 }
 
 
@@ -84,7 +97,14 @@ NSString* boxOfficeListEndpoint;
 - (void)onRefresh {
     self.networkError.hidden = YES;
 
-    [self makeMovieListRequest:boxOfficeListEndpoint completionHandler:^void (NSURLResponse *response, NSData *data, NSError *connectionError) {
+    NSString *endpoint;
+    if (self.tabBar.selectedItem == self.boxOfficeTab) {
+        endpoint = boxOfficeListEndpoint;
+    } else if (self.tabBar.selectedItem == self.dvdsTab) {
+        endpoint = topRentalsListEndpoint;
+    }
+    
+    [self makeMovieListRequest:endpoint completionHandler:^void (NSURLResponse *response, NSData *data, NSError *connectionError) {
         [self.refreshControl endRefreshing]; // good thing endRefreshing is idempotent
         [SVProgressHUD dismiss];  // good thing dismiss is idempotent
 
@@ -201,6 +221,13 @@ NSString* boxOfficeListEndpoint;
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [self filterMovies];
     [self.tableView reloadData];
+}
+
+#pragma mark - Tab bar methods
+
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    [SVProgressHUD show];
+    [self onRefresh];
 }
 
 

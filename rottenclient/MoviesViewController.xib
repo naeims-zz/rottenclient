@@ -6,7 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesViewController">
             <connections>
+                <outlet property="boxOfficeTab" destination="IrU-Gf-pT7" id="wga-Yg-ZoC"/>
+                <outlet property="dvdsTab" destination="LJI-Fm-Ymy" id="oa6-GQ-cue"/>
                 <outlet property="networkError" destination="WAB-ZK-48c" id="gok-Cq-bU0"/>
+                <outlet property="tabBar" destination="X0Y-aO-on0" id="bOK-mn-Kdk"/>
                 <outlet property="tableView" destination="H3o-Hp-Nc0" id="hxo-Nh-MQb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="H3o-Hp-Nc0">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
@@ -29,11 +32,24 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tabBar contentMode="scaleToFill" id="X0Y-aO-on0">
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <items>
+                        <tabBarItem title="Box Office" image="movies.png" id="IrU-Gf-pT7"/>
+                        <tabBarItem title="DVD" image="dvds.png" id="LJI-Fm-Ymy"/>
+                    </items>
+                </tabBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="266" y="423"/>
         </view>
     </objects>
+    <resources>
+        <image name="dvds.png" width="30" height="30"/>
+        <image name="movies.png" width="30" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

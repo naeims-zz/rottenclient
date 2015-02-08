@@ -15,11 +15,12 @@
 @interface MovieDetailViewController () <UITableViewDelegate, UITableViewDataSource, APParallaxViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIImageView *posterView;
-@property (strong, nonatomic) MovieDetailCell *tempCell;
 
 @end
 
 @implementation MovieDetailViewController
+
+UIFont* synopsisFont;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,8 +54,8 @@
     [self.tableView addParallaxWithView:self.posterView andHeight:530];
     self.tableView.parallaxView.delegate = self;
     
-    // temp cell for cell size calculation
-    self.tempCell = [self.tableView dequeueReusableCellWithIdentifier:@"MovieDetailCell"];
+    // font for synopsis (used for height calculations)
+    synopsisFont = [UIFont fontWithName:@"HelveticaNeue" size:15];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,7 +118,7 @@
     
     // synopsis
     cell.synopsis.text = self.movie[@"synopsis"];
-    cell.synopsis.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
+    cell.synopsis.font = synopsisFont;
     [cell.synopsis sizeToFit];
 }
 
@@ -136,7 +137,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGRect rect = [self.movie[@"synopsis"] boundingRectWithSize:CGSizeMake(359.0, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]} context:nil];
+    CGRect rect = [self.movie[@"synopsis"] boundingRectWithSize:CGSizeMake(359.0, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: synopsisFont} context:nil];
 
     return rect.size.height + 250;
 }
