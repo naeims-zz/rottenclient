@@ -33,8 +33,7 @@ Time spent: `18hrs`
 ### Walkthrough
 ![Video Walkthrough](anim_rotten_client.gif)
 
-Network Error Screenshot:
-![Network Error Screenshot](network_error_demo.png)
+[Network Error Screenshot](https://raw.githubusercontent.com/naeims/rottenclient/master/network_error_demo.png)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
