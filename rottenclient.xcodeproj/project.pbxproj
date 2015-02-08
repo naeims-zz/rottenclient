@@ -13,6 +13,8 @@
 		3302B7E61A860BB8009360E1 /* Spilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7E01A860BB8009360E1 /* Spilled.png */; };
 		3302B7E71A860BB8009360E1 /* Upright.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7E11A860BB8009360E1 /* Upright.png */; };
 		3302B7E81A860BB8009360E1 /* WTS.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7E21A860BB8009360E1 /* WTS.png */; };
+		3302B7EC1A86DF0A009360E1 /* MovieDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302B7EA1A86DF0A009360E1 /* MovieDetailCell.m */; };
+		3302B7ED1A86DF0A009360E1 /* MovieDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7EB1A86DF0A009360E1 /* MovieDetailCell.xib */; };
 		3379C0401A81F890000CDD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C03F1A81F890000CDD2F /* main.m */; };
 		3379C0431A81F890000CDD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C0421A81F890000CDD2F /* AppDelegate.m */; };
 		3379C04B1A81F890000CDD2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C04A1A81F890000CDD2F /* Images.xcassets */; };
@@ -44,6 +46,9 @@
 		3302B7E01A860BB8009360E1 /* Spilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spilled.png; path = "../../../../Desktop/rotten images/Spilled.png"; sourceTree = "<group>"; };
 		3302B7E11A860BB8009360E1 /* Upright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Upright.png; path = "../../../../Desktop/rotten images/Upright.png"; sourceTree = "<group>"; };
 		3302B7E21A860BB8009360E1 /* WTS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WTS.png; path = "../../../../Desktop/rotten images/WTS.png"; sourceTree = "<group>"; };
+		3302B7E91A86DF0A009360E1 /* MovieDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailCell.h; sourceTree = "<group>"; };
+		3302B7EA1A86DF0A009360E1 /* MovieDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailCell.m; sourceTree = "<group>"; };
+		3302B7EB1A86DF0A009360E1 /* MovieDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailCell.xib; sourceTree = "<group>"; };
 		3379C03A1A81F890000CDD2F /* rottenclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rottenclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C03E1A81F890000CDD2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C03F1A81F890000CDD2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -180,6 +185,9 @@
 				3379C06A1A820456000CDD2F /* MovieCell.h */,
 				3379C06B1A820456000CDD2F /* MovieCell.m */,
 				3379C06C1A820456000CDD2F /* MovieCell.xib */,
+				3302B7E91A86DF0A009360E1 /* MovieDetailCell.h */,
+				3302B7EA1A86DF0A009360E1 /* MovieDetailCell.m */,
+				3302B7EB1A86DF0A009360E1 /* MovieDetailCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 				3379C0731A8212AD000CDD2F /* MovieDetailViewController.xib in Resources */,
 				3302B7E51A860BB8009360E1 /* Rotten.png in Resources */,
 				3379C04E1A81F890000CDD2F /* LaunchScreen.xib in Resources */,
+				3302B7ED1A86DF0A009360E1 /* MovieDetailCell.xib in Resources */,
 				3379C0671A8200CF000CDD2F /* MoviesViewController.xib in Resources */,
 				3302B7E41A860BB8009360E1 /* Fresh.png in Resources */,
 				3302B7E31A860BB8009360E1 /* Certified Fresh.png in Resources */,
@@ -347,6 +356,7 @@
 				3379C0661A8200CF000CDD2F /* MoviesViewController.m in Sources */,
 				3379C0431A81F890000CDD2F /* AppDelegate.m in Sources */,
 				3379C0721A8212AD000CDD2F /* MovieDetailViewController.m in Sources */,
+				3302B7EC1A86DF0A009360E1 /* MovieDetailCell.m in Sources */,
 				3379C06D1A820456000CDD2F /* MovieCell.m in Sources */,
 				3379C0401A81F890000CDD2F /* main.m in Sources */,
 			);
@@ -464,6 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = rottenclient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -475,6 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = rottenclient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

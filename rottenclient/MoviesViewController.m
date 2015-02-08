@@ -80,7 +80,7 @@ NSString* boxOfficeListEndpoint;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
     
     NSDictionary *movie = self.movies[indexPath.row];
     
@@ -121,12 +121,11 @@ NSString* boxOfficeListEndpoint;
     } else {
         cell.mpaaLabel.hidden = YES;
     }
-        
     
     NSString *url = [movie valueForKeyPath:@"posters.thumbnail"];
     [cell.posterView setImageWithURL:[NSURL URLWithString:url]];
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
