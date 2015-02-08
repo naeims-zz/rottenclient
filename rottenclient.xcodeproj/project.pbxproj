@@ -15,6 +15,7 @@
 		3302B7E81A860BB8009360E1 /* WTS.png in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7E21A860BB8009360E1 /* WTS.png */; };
 		3302B7EC1A86DF0A009360E1 /* MovieDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302B7EA1A86DF0A009360E1 /* MovieDetailCell.m */; };
 		3302B7ED1A86DF0A009360E1 /* MovieDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3302B7EB1A86DF0A009360E1 /* MovieDetailCell.xib */; };
+		3302B7F61A8773A3009360E1 /* UIImageView+NSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302B7F51A8773A3009360E1 /* UIImageView+NSAdditions.m */; };
 		3379C0401A81F890000CDD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C03F1A81F890000CDD2F /* main.m */; };
 		3379C0431A81F890000CDD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C0421A81F890000CDD2F /* AppDelegate.m */; };
 		3379C04B1A81F890000CDD2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C04A1A81F890000CDD2F /* Images.xcassets */; };
@@ -49,6 +50,8 @@
 		3302B7E91A86DF0A009360E1 /* MovieDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailCell.h; sourceTree = "<group>"; };
 		3302B7EA1A86DF0A009360E1 /* MovieDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailCell.m; sourceTree = "<group>"; };
 		3302B7EB1A86DF0A009360E1 /* MovieDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailCell.xib; sourceTree = "<group>"; };
+		3302B7F41A8773A3009360E1 /* UIImageView+NSAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+NSAdditions.h"; sourceTree = "<group>"; };
+		3302B7F51A8773A3009360E1 /* UIImageView+NSAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+NSAdditions.m"; sourceTree = "<group>"; };
 		3379C03A1A81F890000CDD2F /* rottenclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rottenclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C03E1A81F890000CDD2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C03F1A81F890000CDD2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -105,6 +108,15 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		3302B7F31A87736E009360E1 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				3302B7F41A8773A3009360E1 /* UIImageView+NSAdditions.h */,
+				3302B7F51A8773A3009360E1 /* UIImageView+NSAdditions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		3379C0311A81F890000CDD2F = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +140,7 @@
 		3379C03C1A81F890000CDD2F /* rottenclient */ = {
 			isa = PBXGroup;
 			children = (
+				3302B7F31A87736E009360E1 /* Categories */,
 				3302B7DC1A860B95009360E1 /* Images */,
 				3379C0691A82043E000CDD2F /* Views */,
 				3379C0681A8200EC000CDD2F /* View Controllers */,
@@ -357,6 +370,7 @@
 				3379C0431A81F890000CDD2F /* AppDelegate.m in Sources */,
 				3379C0721A8212AD000CDD2F /* MovieDetailViewController.m in Sources */,
 				3302B7EC1A86DF0A009360E1 /* MovieDetailCell.m in Sources */,
+				3302B7F61A8773A3009360E1 /* UIImageView+NSAdditions.m in Sources */,
 				3379C06D1A820456000CDD2F /* MovieCell.m in Sources */,
 				3379C0401A81F890000CDD2F /* main.m in Sources */,
 			);

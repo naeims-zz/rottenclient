@@ -11,13 +11,17 @@
 #import "UIImageView+AFNetworking.h"
 #import "MovieDetailViewController.h"
 #import "SVProgressHUD.h"
+#import "UIImageView+NSAdditions.h"
 
-@interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) NSArray *allMovies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UILabel *networkError;
+@property (nonatomic, strong) UISearchBar *searchBar;
+
 
 -(void)makeMovieListRequest:(NSString*)endpointUrl completionHandler:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError))completionHandler ;
 @end
@@ -47,11 +51,13 @@ NSString* boxOfficeListEndpoint;
     [SVProgressHUD show];
     [self onRefresh];
     
-    // configure other things
-    self.title = @"Box Office Movies";
+    // search bar
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 375, 40)];
+    self.searchBar.delegate = self;
 
     // configure navigation bar
     self.navigationController.navigationBar.translucent = NO;
+    self.navigationItem.titleView = self.searchBar;
     
     // refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -89,16 +95,36 @@ NSString* boxOfficeListEndpoint;
         
         // parse the response and reload data
         NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-        self.movies = responseDictionary[@"movies"];
-
-        if (self.movies == nil) {
+        self.allMovies = responseDictionary[@"movies"];
+        
+        if (self.allMovies == nil) {
             self.networkError.hidden = NO;
             return;
         }
 
+        [self filterMovies];
         [self.tableView reloadData];
         self.tableView.hidden = NO;
     }];
+}
+
+- (void) filterMovies {
+    NSPredicate *p = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        NSString* search = self.searchBar.text;
+        if ([search length] == 0) {
+            return YES;
+        }
+        
+        NSString* title = evaluatedObject[@"title"];
+        
+        if ([[title lowercaseString] rangeOfString:[search lowercaseString]].location != NSNotFound) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }];
+    
+    self.movies = [self.allMovies filteredArrayUsingPredicate:p];
 }
 
 #pragma mark - Table methods
@@ -108,6 +134,7 @@ NSString* boxOfficeListEndpoint;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
     
     NSDictionary *movie = self.movies[indexPath.row];
@@ -151,7 +178,8 @@ NSString* boxOfficeListEndpoint;
     }
     
     NSString *url = [movie valueForKeyPath:@"posters.thumbnail"];
-    [cell.posterView setImageWithURL:[NSURL URLWithString:url]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [cell.posterView fadeInImageWithURLRequest:request placeholderImage:nil];
     
     //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -167,5 +195,14 @@ NSString* boxOfficeListEndpoint;
     
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+#pragma mark - Search bar methods
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self filterMovies];
+    [self.tableView reloadData];
+}
+
+
 
 @end

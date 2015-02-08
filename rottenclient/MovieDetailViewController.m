@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIScrollView+APParallaxHeader.h"
 #import "MovieDetailCell.h"
+#import "UIImageView+NSAdditions.h"
 
 @interface MovieDetailViewController () <UITableViewDelegate, UITableViewDataSource, APParallaxViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -39,9 +40,14 @@
     // create image view
     CGRect posterRect = CGRectMake(0, 0, 375, 603);
     self.posterView = [[UIImageView alloc] initWithFrame:posterRect];
-    NSString *url = [[self.movie valueForKeyPath:@"posters.original"] stringByReplacingOccurrencesOfString:@"tmb" withString:@"ori"];
-    [self.posterView setImageWithURL:[NSURL URLWithString:url]];
+    
+    NSString *lowresUrl = [self.movie valueForKeyPath:@"posters.thumbnail"];
+    [self.posterView setImageWithURL:[NSURL URLWithString:lowresUrl]];
     self.posterView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    NSString *highresUrl = [[self.movie valueForKeyPath:@"posters.original"] stringByReplacingOccurrencesOfString:@"tmb" withString:@"ori"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:highresUrl]];
+    [self.posterView fadeInImageWithURLRequest:request placeholderImage:self.posterView.image];
     
     // parallax
     [self.tableView addParallaxWithView:self.posterView andHeight:530];
